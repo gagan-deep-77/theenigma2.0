@@ -34,9 +34,16 @@
             font-size: 30px;
             font-family: Arial, Helvetica, sans-serif;
         }
+        header{
+            width:400px;
+            height:400px;
+            background:red;
+            color:white;
+        }
     </style>
 </head>
 <body>
+    <header>{{name}}</header>
     <div class="container">
         {%for vote,option,question in zipped_list%}
             <h1 id="question">{{question}}</h1>
@@ -47,7 +54,7 @@
             
             <span>
 
-                <button type="button" onclick="vote_option('{%get_id sub_option question%}')">Vote</button>
+                <button type="button" onclick="vote_option('{%get_id sub_option question%}','{{question}}','{{room_name}}','{{name}}','{{sub_option}}')">Vote</button>
                 {% vote_count sub_option question %}
                 <br>
                 <br>
@@ -62,9 +69,13 @@
 
     </div>
     <script>
-        function vote_option(id){
+        function vote_option(id,question,room_name,name,option){
             data = JSON.stringify({
-                id:id
+                id:id,
+                question:question,
+                room_name:room_name,
+                name:name,
+                option:option,
             })
             let csrftoken = getCookie('csrftoken');
             fetch("/vote_option", {

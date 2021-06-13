@@ -1,31 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        header{
-            color:slategrey;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 40px;
-            margin-left:45%;
-        }
-    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Room url</title>
 </head>
+<h3 align="center">Enter Room url</h3>
+
 <body>
-    <header>
-        Room URL
-    </header>
+    {%if problem_occured == True%}
+    <div class="alert alert-danger" role="alert">
+        A problem occured while displaying your page! Please make sure that you entered a google form link.
+    </div>
+    {%endif%}
     <form action="{%url 'display_room'%}" method="POST">
         {%csrf_token%}
-        <label for="url">
-            <input type="text" name="url" id="">
-            <input type="text" value={{room_name}} name="room_name">
-            <input type="text" value={{room_password}} name="room_password">
-        </label>
-        <input type="submit" value="Join Room">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"></label>
+            <input type="text" class="form-control" id="url" aria-describedby="emailHelp" name="url">
+
+        </div>
+        <input type="text" value={{room_name}} name="room_name" class="hide" style="display: None;">
+        <input type="text" value={{room_password}} name="room_password" class="hide" style="display: None;">
+        <input type="text" value={{name}} name="name">
+        <div class="container" style="width:100%;text-align:center">
+            <button type="submit" class="btn btn-primary" align="center">Submit</button>
+        </div>
     </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -28,7 +28,7 @@ class Options(models.Model):
     question = models.CharField(max_length=1000)
     room_name = models.CharField(max_length=500,default="")
     votes = models.IntegerField()
-
+    voted_by = models.CharField(max_length=1000,default="")
     def __str__(self):
         return self.option
 
@@ -38,6 +38,7 @@ class Voters(models.Model):
     option = models.CharField(max_length=1000)
     question = models.CharField(max_length=1000)
     room_name = models.CharField(max_length=500, default="")
+    option_id = models.IntegerField(default=0)
 
 
     def __str__(self):
